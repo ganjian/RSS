@@ -13,6 +13,9 @@ namespace Server
 {
     public partial class Sever : Form
     {
+
+
+        SeverSocket ss = new SeverSocket();
         public Sever()
         {
             InitializeComponent();
@@ -21,14 +24,19 @@ namespace Server
         }
         public void serverstart()
         {
-            SeverSocket ss = new SeverSocket();
             ss.start();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            tbMSG.Text += "server start;";
+            tbInfo.Text += "server start;" + "\r\n";
             serverstart();
+        }
+
+        private void BtnSendMsg_Click(object sender, EventArgs e)
+        {
+            tbInfo.Text += "Send Msg:"+ tbSendMsg.Text + "\r\n";
+            ss.sendMessage(tbSendMsg.Text);
         }
     }
 }
